@@ -1,38 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+
+  padding: 0;
+  margin: 0;
+}
+
+dialog {
+  display: flex;
+  color: var(--text-primary);
+  background-color: var(--bg-secondary);
+  border: none;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+dialog:not([open]) {
+  display: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+}
+
+aside {
+  position: fixed;
+  z-index: 2;
+  height: 100vh;
+  width: 100%;
+  height: 100%;
+  max-width: 150px;
+  padding: 0;
+  padding-left: 10px;
+  border-right: 2px solid var(--accent);
+  background: var(--bg-secondary);
+
+}
+
+.navbar-list {
+  color: #4f99be;
+  list-style: none;
+  margin: 0;
+  
+  ul {
+    padding-left: 10px;
+  }
+
+  li {
+    margin: 0;
+    list-style: none;
+  }
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100vh;
+  margin-left: 162px; /* width of aside */
+  overflow: hidden;
+}
+
+.server-info {
+  background-color: var(--bg-secondary);
+  height: 100%;
+  width: 100%;
+  max-height: 40px;
+
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  flex-shrink: 0;
+
+  padding-left: 24px;
+  padding-top: 12px;
+
+  border-bottom: 2px solid var(--accent);
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  height: 100%;
+  gap: 15px;
+  padding: 12px;
+}
+
+.other {
+  align-self: flex-start;
+  max-width: 350px;
+  background-color: var(--message-other);
+  width: fit-content;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.user {
+  align-self: flex-end;
+  max-width: 350px;
+  background-color: var(--message-own);
+  width: fit-content;
+  padding: 10px;
+  padding-bottom: 0;
+  border-radius: 10px;
+}
+
+.system {
+  text-align: center;
+  margin: 16px 0;
+  font-size: 0.9em;
+  color: var(--text-muted); 
+  font-style: italic; 
+}
+
+.chat-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 10px;
+  padding: 15px;
+  border-top: 1px solid var(--border);
+  width: 100%;
+}
+
+.chat-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 10px;
+  width: 30%;
+
+  background-color: var(--bg-secondary);
+}
+
+.chat-input {
+  height: 27px; /* yes this is hardcoded but i dont care */
+  width: 100%;
+  padding-left: 10px;
+  border: 1px transparent;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border-radius: 4px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+
+.chat-controls button {
+  background-color: transparent;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding-right: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0 10px;
+  line-height: 1;
+  height: 24px;
+}
+
+.chat-controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.chat-controls button:disabled:hover::after {
+  content: "Server offline - cannot send";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
   color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 12px;
+  margin-bottom: 8px;
+  pointer-events: none;
+  z-index: 1000;
 }
 
-.App-link {
-  color: #61dafb;
+.chat-controls button:disabled:hover::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% - 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #333;
+  pointer-events: none;
+  z-index: 1000;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.chat-controls button svg {
+  display: block;
+}
+
+.chatbox button:hover {
+  background: var(--message-own);
 }
