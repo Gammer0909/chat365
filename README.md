@@ -31,3 +31,10 @@ then,
 and go to http://localhost:3000/
 
 If you have any problems feel free to open an issue.
+
+## Project Details
+
+Some brief project details if you're looking into the files:
+- **ALL** frontend files are in `src/`, and anything backend related is in `backend/` (duh)
+- If there's anything that seems overly dumb or stupid, I *should* have a comment nearby explaining my decision. If I don't open an issue and I'll explain it and add a comment for future reference.
+- This is my like 3rd react project ever, so if anything is a bad practice or something I should not get used to using, please let me know!
